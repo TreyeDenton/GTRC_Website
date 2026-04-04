@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loafathon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Glitch keyframes */
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20%      { transform: translate(-2px, 1px); }
+      40%      { transform: translate(2px, -1px); }
+      60%      { transform: translate(-1px, -2px); }
+      80%      { transform: translate(1px, 2px); }
+    }
+
+    @keyframes glitch-color {
+      0%, 100% {
+        text-shadow: none;
+      }
+      20% {
+        text-shadow: -3px 0 #00f5ff, 3px 0 #ff2d78;
+      }
+      40% {
+        text-shadow: 3px 0 #00f5ff, -2px 0 #ff2d78;
+      }
+      60% {
+        text-shadow: -2px 0 #ff2d78, 2px 0 #00f5ff;
+      }
+      80% {
+        text-shadow: 2px 0 #ff2d78, -3px 0 #00f5ff;
+      }
+    }
+
+    @keyframes grain {
+      0%, 100% { transform: translate(0, 0); }
+      10% { transform: translate(-1%, -1%); }
+      20% { transform: translate(1%, 0%); }
+      30% { transform: translate(0%, 1%); }
+      40% { transform: translate(-1%, 1%); }
+      50% { transform: translate(1%, -1%); }
+      60% { transform: translate(-1%, 0%); }
+      70% { transform: translate(0%, -1%); }
+      80% { transform: translate(1%, 1%); }
+      90% { transform: translate(-1%, -1%); }
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      text-align: center;
+      color: #d4c8f0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Layered gradient background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 20%, rgba(120, 40, 160, 0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 70% 35% at 50% 85%, rgba(255, 45, 120, 0.3) 0%, transparent 60%),
+        linear-gradient(180deg, #0a0015 0%, #150030 40%, #2a1040 70%, #1a0828 100%);
+      z-index: -2;
+    }
+
+    /* Noise/grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 20;
+      animation: grain 0.5s steps(4) infinite;
+    }
+
+    /* Scanline overlay */
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.18) 2px,
+        rgba(0, 0, 0, 0.18) 4px
+      );
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      padding: 2.5rem 3.5rem;
+      border: 1px solid rgba(0, 245, 255, 0.25);
+      outline: 1px solid rgba(255, 45, 120, 0.15);
+      outline-offset: 6px;
+      box-shadow:
+        0 0 20px rgba(0, 245, 255, 0.1),
+        0 0 60px rgba(199, 36, 177, 0.08),
+        inset 0 0 40px rgba(0, 245, 255, 0.03);
+      transform: rotate(-0.4deg);
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(3.5rem, 14vw, 8rem);
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #ff2d78 0%, #c792ea 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 8px rgba(255, 45, 120, 0.3));
+      animation: glitch 4s ease-in-out infinite, glitch-color 4s ease-in-out infinite;
+      /* glitch-color won't show through the gradient clip,
+         but the positional glitch carries through */
+    }
+
+    /* Duplicate heading layers for chromatic aberration */
+    h1::before,
+    h1::after {
+      content: 'Loafathon';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(3.5rem, 14vw, 8rem);
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      background: none;
+      -webkit-text-fill-color: unset;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    h1::before {
+      color: #00f5ff;
+      animation: glitch 3s ease-in-out infinite reverse;
+      opacity: 0.12;
+      left: 2px;
+    }
+
+    h1::after {
+      color: #ff2d78;
+      animation: glitch 3.5s ease-in-out infinite;
+      opacity: 0.12;
+      left: -2px;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .date {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .time {
+      font-size: clamp(0.85rem, 2.2vw, 1.1rem);
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="scanlines"></div>
+  <main>
+    <h1>Loafathon</h1>
+    <div class="details">
+      <p class="date">Saturday, April 25, 2026</p>
+      <p class="time">8am – 2pm</p>
+    </div>
+  </main>
+</body>
+</html>
