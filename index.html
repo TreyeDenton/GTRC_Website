@@ -325,6 +325,96 @@
       opacity: 0.7;
     }
 
+    /* ── Countdown timer ─────────────────────────── */
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: clamp(1rem, 4vw, 2.5rem);
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0, 245, 255, 0.15);
+    }
+
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .countdown-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.6rem, 6vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #00f5ff 0%, #c792ea 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.35));
+      min-width: 2ch;
+      text-align: center;
+    }
+
+    .countdown-label {
+      font-size: clamp(0.55rem, 1.4vw, 0.75rem);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      color: #d4c8f0;
+    }
+
+    .countdown-done {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #ff2d78 0%, #00f5ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0, 245, 255, 0.15);
+    }
+
+    /* ── FAQ section ──────────────────────────────── */
+
+    .faq-list {
+      text-align: left;
+      margin-top: 0.5rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1.75rem;
+    }
+
+    .faq-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-q {
+      font-size: clamp(0.95rem, 2.4vw, 1.2rem);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
+      background: linear-gradient(135deg, #ff2d78 0%, #c792ea 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .faq-a {
+      font-size: clamp(0.95rem, 2.4vw, 1.2rem);
+      font-weight: 400;
+      line-height: 1.7;
+      color: #c4b8e0;
+      padding-left: 1rem;
+      border-left: 2px solid rgba(0, 245, 255, 0.3);
+    }
+
     /* ── Mobile adjustments ───────────────────────── */
 
     @media (max-width: 480px) {
@@ -349,6 +439,24 @@
         <p class="date">Saturday, April 25, 2026</p>
         <p class="time">8am – 2pm</p>
       </div>
+      <div class="countdown" id="countdown">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-days">--</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-hours">--</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-minutes">--</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-seconds">--</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -356,6 +464,38 @@
     <div class="section-inner">
       <h2>What is Loafathon???</h2>
       <p>Loafathon is a community running / hiking / walking event that takes place at Sugarloaf Park in Granville, Ohio. It is a six hour celebration of vert on the finest 92' hill that Ohio has to offer. Come for one loaf, come for ten, or stay the full six hours — Loafathon is for everyone.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-inner">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <p class="faq-q">Q: But seriously, you guys just run up and down a hill for six hours?</p>
+          <p class="faq-a">A: Correct. It's an extremely simple event with an embarrassingly strong following.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Q: Why would anyone do that?</p>
+          <p class="faq-a">A: For fitness, for fun, for the view, for the group energy, or for a decent snack. Note: It's BYOS.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Q: Do I have to stay all six hours?</p>
+          <p class="faq-a">A: No. Stay for one loaf or many. Nobody is taking attendance.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Q: Do I have to run?</p>
+          <p class="faq-a">A: No. Walk it, hike it, shuffle it. Sugarloaf does not care.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Q: Is it competitive?</p>
+          <p class="faq-a">A: Only if you make it competitive.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Q: What if I've never done anything like this before?</p>
+          <p class="faq-a">A: Then this is an excellent time to start doing questionable things with a supportive group.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -371,10 +511,44 @@
         </iframe>
         <div class="map-pin"></div>
       </div>
+      <p class="address">Sugarloaf Park</p>
       <p class="address">411 W Broadway &mdash; Granville, OH 43023</p>
     </div>
   </section>
   </div>
 
+  <script>
+    (function () {
+      // April 25, 2026 8:00am Eastern Daylight Time (UTC-4)
+      var target = new Date('2026-04-25T08:00:00-04:00').getTime();
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function tick() {
+        var now = Date.now();
+        var diff = target - now;
+
+        if (diff <= 0) {
+          var el = document.getElementById('countdown');
+          el.className = 'countdown-done';
+          el.innerHTML = "IT'S LOAFATHON DAY";
+          return;
+        }
+
+        var days    = Math.floor(diff / 86400000);
+        var hours   = Math.floor((diff % 86400000) / 3600000);
+        var minutes = Math.floor((diff % 3600000) / 60000);
+        var seconds = Math.floor((diff % 60000) / 1000);
+
+        document.getElementById('cd-days').textContent    = pad(days);
+        document.getElementById('cd-hours').textContent   = pad(hours);
+        document.getElementById('cd-minutes').textContent = pad(minutes);
+        document.getElementById('cd-seconds').textContent = pad(seconds);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
 </body>
 </html>
