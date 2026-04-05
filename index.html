@@ -113,7 +113,7 @@
     /* ── Shared section base ──────────────────────── */
 
     section {
-      height: 100vh;
+      min-height: 100vh;
       scroll-snap-align: start;
       display: flex;
       align-items: center;
@@ -418,12 +418,50 @@
     /* ── Mobile adjustments ───────────────────────── */
 
     @media (max-width: 480px) {
+      section {
+        padding: 2.5rem 1.25rem 2rem;
+      }
+
+      .hero {
+        padding: 1.5rem;
+      }
+
       .hero-inner {
         padding: 1.75rem 1.5rem;
       }
 
       .section-inner::before {
-        margin-bottom: 1.75rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .section-inner h2 {
+        margin-bottom: 1rem;
+      }
+
+      .faq-item {
+        margin-bottom: 1.1rem;
+      }
+
+      .countdown-label {
+        font-size: 0.65rem;
+      }
+
+      .address {
+        font-size: 0.85rem;
+      }
+
+      .faq-section {
+        align-items: flex-start;
+        height: 100vh;
+        min-height: unset;
+        overflow: hidden;
+      }
+
+      .faq-section .section-inner {
+        max-height: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 1rem;
       }
     }
   </style>
@@ -467,7 +505,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="faq-section">
     <div class="section-inner">
       <h2>FAQ</h2>
       <div class="faq-list">
